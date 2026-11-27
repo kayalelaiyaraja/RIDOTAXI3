@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RIDO TAXI | Taxi Booking & Management</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand-icon">R</div>
+      <div>
+        <h2>RIDO TAXI</h2>
+        <small>Your Ride, Your Comfort</small>
+      </div>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <nav>
+      <a href="#dashboard" class="nav-link active">▦ Dashboard</a>
+      <a href="#drivers" class="nav-link">♙ Drivers</a>
+      <a href="#vehicles" class="nav-link">▣ Vehicles</a>
+      <a href="#booking" class="nav-link">＋ Customer Booking</a>
+      <a href="#trips" class="nav-link">↗ Trip History</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <span class="status-dot"></span>
+      System Online
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <header class="topbar">
+      <div>
+        <h1>RIDO TAXI</h1>
+        <p>Taxi Booking and Fare Management System</p>
+      </div>
+
+      <div class="admin-profile">
+        <div class="avatar">A</div>
+        <div>
+          <strong>Administrator</strong>
+          <small>System Manager</small>
+        </div>
+      </div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="section">
+
+      <div class="section-heading">
+        <div>
+          <h2>Dashboard Overview</h2>
+          <p>Welcome to RIDO TAXI management dashboard.</p>
+        </div>
+
+        <button class="primary-btn" onclick="showSection('booking')">
+          + New Booking
+        </button>
+      </div>
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <span>Total Bookings</span>
+          <h2 id="totalBookings">0</h2>
+          <small>All registered bookings</small>
+        </div>
+
+        <div class="stat-card">
+          <span>Total Drivers</span>
+          <h2 id="totalDrivers">0</h2>
+          <small>Registered drivers</small>
+        </div>
+
+        <div class="stat-card">
+          <span>Total Vehicles</span>
+          <h2 id="totalVehicles">0</h2>
+          <small>Registered vehicles</small>
+        </div>
+
+        <div class="stat-card">
+          <span>Completed Trips</span>
+          <h2 id="completedTrips">0</h2>
+          <small>Successfully completed</small>
+        </div>
+
+        <div class="stat-card">
+          <span>Total Revenue</span>
+          <h2 id="totalRevenue">₹0</h2>
+          <small>Completed trip fares</small>
+        </div>
+
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">
+          <h3>Recent Bookings</h3>
+          <a href="#trips" onclick="showSection('trips')">View All</a>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Distance</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody id="recentBookings">
+              <tr>
+                <td colspan="6" class="empty">No bookings yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- DRIVER REGISTRATION -->
+    <section id="drivers" class="section">
+
+      <div class="section-heading">
+        <div>
+          <h2>Driver Registration</h2>
+          <p>Register and manage RIDO TAXI drivers.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Add New Driver</h3>
+
+        <form id="driverForm" class="form-grid">
+
+          <div class="field">
+            <label>Driver Name</label>
+            <input id="driverName" required placeholder="Enter driver name">
+          </div>
+
+          <div class="field">
+            <label>Phone Number</label>
+            <input id="driverPhone" type="tel" pattern="[0-9]{10}" maxlength="10" required placeholder="10 digit number">
+          </div>
+
+          <div class="field">
+            <label>Driving Licence Number</label>
+            <input id="driverLicense" required placeholder="Enter licence number">
+          </div>
+
+          <div class="field">
+            <label>Driver ID</label>
+            <input value="Automatically Generated" disabled>
+          </div>
+
+          <button type="submit" class="primary-btn full-width">
+            Register Driver
+          </button>
+
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Registered Drivers</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Driver ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Licence</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="driverTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- VEHICLE MANAGEMENT -->
+    <section id="vehicles" class="section">
+
+      <div class="section-heading">
+        <div>
+          <h2>Vehicle Management</h2>
+          <p>Manage RIDO TAXI vehicles.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Add New Vehicle</h3>
+
+        <form id="vehicleForm" class="form-grid">
+
+          <div class="field">
+            <label>Vehicle Number</label>
+            <input id="vehicleNumber" required placeholder="TN 37 AB 1234">
+          </div>
+
+          <div class="field">
+            <label>Vehicle Model</label>
+            <input id="vehicleModel" required placeholder="e.g. Swift Dzire">
+          </div>
+
+          <div class="field">
+            <label>Vehicle Category</label>
+            <select id="vehicleCategory" required>
+              <option value="">Select Category</option>
+              <option value="Mini">Mini</option>
+              <option value="Sedan">Sedan</option>
+              <option value="SUV">SUV</option>
+              <option value="Luxury">Luxury</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Rate Per KM (₹)</label>
+            <input id="vehicleRate" type="number" min="1" required placeholder="Enter rate">
+          </div>
+
+          <button type="submit" class="primary-btn full-width">
+            Add Vehicle
+          </button>
+
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Registered Vehicles</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Vehicle ID</th>
+                <th>Number</th>
+                <th>Model</th>
+                <th>Category</th>
+                <th>Rate/KM</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="vehicleTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CUSTOMER BOOKING -->
+    <section id="booking" class="section">
+
+      <div class="section-heading">
+        <div>
+          <h2>Customer Booking</h2>
+          <p>Book your comfortable ride with RIDO TAXI.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+
+        <h3>Customer Information</h3>
+
+        <form id="bookingForm">
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label>Customer Name</label>
+              <input id="customerName" required placeholder="Enter customer name">
+            </div>
+
+            <div class="field">
+              <label>Phone Number</label>
+              <input id="customerPhone" type="tel" pattern="[0-9]{10}" maxlength="10" required placeholder="10 digit number">
+            </div>
+
+          </div>
+
+          <div class="divider"></div>
+
+          <h3>Coimbatore Distance Calculator</h3>
+
+          <p class="info-text">
+            Select your pickup and destination from the 10 available locations.
+            The estimated distance will be calculated automatically.
+          </p>
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label>From Location</label>
+              <select id="fromLocation" required>
+                <option value="">Select Pickup Location</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>To Destination</label>
+              <select id="toLocation" required>
+                <option value="">Select Destination</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="distance-box">
+            <div>
+              <span>Estimated Travel Distance</span>
+              <h2 id="distanceDisplay">0 KM</h2>
+              <small id="routeMessage">Select both locations to calculate.</small>
+            </div>
+
+            <div class="distance-icon">↗</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h3>Driver and Vehicle Allocation</h3>
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label>Select Driver</label>
+              <select id="assignDriver" required>
+                <option value="">Select Driver</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Select Vehicle</label>
+              <select id="assignVehicle" required>
+                <option value="">Select Vehicle</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Additional Charges (₹)</label>
+              <input id="extraCharge" type="number" min="0" value="0">
+            </div>
+
+          </div>
+
+          <div class="fare-box">
+
+            <div class="fare-row">
+              <span>Travel Distance</span>
+              <strong id="fareDistance">0 KM</strong>
+            </div>
+
+            <div class="fare-row">
+              <span>Vehicle Rate</span>
+              <strong id="fareRate">₹0 / KM</strong>
+            </div>
+
+            <div class="fare-row">
+              <span>Distance Fare</span>
+              <strong id="distanceFare">₹0</strong>
+            </div>
+
+            <div class="fare-row">
+              <span>Additional Charges</span>
+              <strong id="extraDisplay">₹0</strong>
+            </div>
+
+            <div class="fare-total">
+              <span>Total Estimated Fare</span>
+              <h2 id="totalFare">₹0</h2>
+            </div>
+
+          </div>
+
+          <button type="submit" class="primary-btn full-width">
+            Confirm RIDO TAXI Booking
+          </button>
+
+        </form>
+      </div>
+
+    </section>
+
+    <!-- TRIP HISTORY -->
+    <section id="trips" class="section">
+
+      <div class="section-heading">
+        <div>
+          <h2>Trip History Reports</h2>
+          <p>Manage all RIDO TAXI bookings and trips.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>All Bookings</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Distance</th>
+                <th>Driver</th>
+                <th>Vehicle</th>
+                <th>Fare</th>
+                <th>Status / Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tripTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Driver-wise Trip Summary</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Driver ID</th>
+                <th>Driver Name</th>
+                <th>Completed Trips</th>
+                <th>Total Revenue</th>
+              </tr>
+            </thead>
+            <tbody id="driverSummary"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      © 2026 RIDO TAXI | Coimbatore, Tamil Nadu
+      <p>Your Ride, Your Comfort.</p>
+    </footer>
+
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
