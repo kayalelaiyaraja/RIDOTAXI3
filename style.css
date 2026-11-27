@@ -1,0 +1,603 @@
+
+:root {
+  --navy: #101827;
+  --navy-light: #1b293d;
+  --card: #1d293b;
+  --slate: #64748b;
+  --pale: #b9c4d2;
+  --tan: #d6b58c;
+  --white: #f1f5f9;
+  --muted: #94a3b8;
+  --border: #344256;
+  --green: #72c6a0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 250px;
+  background: #0c1422;
+  padding: 28px 18px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 50px;
+}
+
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  background: var(--tan);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.brand h2 {
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.menu-title {
+  font-size: 10px;
+  color: var(--slate);
+  letter-spacing: 2px;
+  margin: 0 0 15px 10px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.nav-link {
+  padding: 14px 13px;
+  border-radius: 9px;
+  text-decoration: none;
+  color: var(--pale);
+  font-size: 13px;
+  transition: .2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--navy-light);
+  color: var(--tan);
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding: 15px;
+  color: var(--muted);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+}
+
+/* MAIN */
+
+.main {
+  margin-left: 250px;
+  padding: 30px 35px;
+  width: calc(100% - 250px);
+  min-width: 0;
+}
+
+.topbar,
+.section-heading,
+.admin-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.topbar {
+  margin-bottom: 35px;
+}
+
+.topbar h1 {
+  font-size: 27px;
+  letter-spacing: 1px;
+}
+
+.topbar p,
+.section-heading p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+.admin-profile {
+  justify-content: flex-start;
+}
+
+.admin-profile strong {
+  font-size: 12px;
+}
+
+.admin-profile small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--slate);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* SECTIONS */
+
+.section {
+  display: none;
+  scroll-margin-top: 25px;
+}
+
+.section:target {
+  display: block;
+}
+
+#dashboard {
+  display: block;
+}
+
+.section-heading {
+  margin-bottom: 25px;
+}
+
+.section-heading h2 {
+  font-size: 22px;
+}
+
+/* BUTTONS */
+
+.primary-btn {
+  background: var(--tan);
+  color: var(--navy);
+  padding: 13px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.primary-btn:hover {
+  background: #e8c9a2;
+  transform: translateY(-2px);
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* DASHBOARD CARDS */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 15px;
+}
+
+.stat-card span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.stat-card h2 {
+  font-size: 25px;
+  margin: 14px 0 8px;
+  color: var(--tan);
+}
+
+.stat-card small {
+  color: var(--slate);
+  font-size: 10px;
+}
+
+/* PANELS */
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 23px;
+}
+
+.panel h3 {
+  font-size: 15px;
+  margin-bottom: 22px;
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-heading a {
+  color: var(--tan);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* FORMS */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.field label {
+  color: var(--pale);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+input,
+select {
+  width: 100%;
+  background: #111c2d;
+  color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 13px;
+  outline: none;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--tan);
+}
+
+input::placeholder {
+  color: #738197;
+}
+
+select option {
+  background: var(--navy);
+}
+
+input:disabled {
+  color: var(--muted);
+}
+
+.divider {
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+.info-text {
+  font-size: 12px;
+  color: var(--muted);
+  margin: -10px 0 20px;
+}
+
+/* DISTANCE CALCULATOR */
+
+.distance-box {
+  background: #111c2d;
+  border: 1px solid #47556b;
+  border-radius: 10px;
+  margin-top: 23px;
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.distance-box span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.distance-box h2 {
+  color: var(--tan);
+  font-size: 30px;
+  margin: 10px 0;
+}
+
+.distance-box small {
+  color: var(--slate);
+  font-size: 11px;
+}
+
+.distance-icon {
+  font-size: 35px;
+  color: var(--tan);
+}
+
+/* FARE CALCULATOR */
+
+.fare-box {
+  background: #111c2d;
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 25px 0;
+}
+
+.fare-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.fare-row span {
+  color: var(--muted);
+}
+
+.fare-total {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fare-total span {
+  font-size: 13px;
+}
+
+.fare-total h2 {
+  color: var(--tan);
+  font-size: 24px;
+}
+
+/* TABLES */
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+th {
+  color: var(--tan);
+  text-align: left;
+  background: #152237;
+  padding: 15px 12px;
+}
+
+td {
+  padding: 15px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--pale);
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px;
+}
+
+.action-btn {
+  border: none;
+  padding: 7px 10px;
+  border-radius: 5px;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 10px;
+  background: var(--slate);
+  color: white;
+}
+
+.action-btn.complete {
+  background: #28694e;
+}
+
+.action-btn.cancel,
+.action-btn.delete {
+  background: #813f49;
+}
+
+.status {
+  padding: 6px 9px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+.status.Booked {
+  background: #344c70;
+  color: #c7d9ff;
+}
+
+.status.Completed {
+  background: #245b48;
+  color: #a6edc9;
+}
+
+.status.Cancelled {
+  background: #713c48;
+  color: #ffc1c1;
+}
+
+/* FOOTER */
+
+footer {
+  color: var(--slate);
+  text-align: center;
+  font-size: 11px;
+  padding: 30px 0 10px;
+}
+
+footer p {
+  margin-top: 8px;
+  color: var(--tan);
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width: 1100px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 700px) {
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 15px;
+  }
+
+  .app {
+    flex-direction: column;
+  }
+
+  .brand {
+    margin-bottom: 20px;
+  }
+
+  nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .nav-link {
+    white-space: nowrap;
+    font-size: 11px;
+    padding: 10px;
+  }
+
+  .menu-title,
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .main {
+    width: 100%;
+    margin: 0;
+    padding: 20px 13px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .topbar h1 {
+    font-size: 20px;
+  }
+
+  .admin-profile {
+    display: none;
+  }
+
+  .section-heading h2 {
+    font-size: 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+  }
+
+  .stat-card {
+    padding: 15px 10px;
+  }
+
+  .stat-card h2 {
+    font-size: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+
+  .section-heading .primary-btn {
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  .distance-box h2 {
+    font-size: 25px;
+  }
+}
